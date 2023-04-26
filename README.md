@@ -40,8 +40,8 @@ Things you may want to cover:
 
 
 ### Association
-has_many    :items
-has_one     :buyer
+has_many     :items
+has_many     :buyers
 
 
 ## items(商品出品)テーブル
@@ -54,15 +54,14 @@ has_one     :buyer
 | category_id          | integer    | null: false                    |(商品詳細)
 | product_condition_id | integer    | null: false                    |(商品状態)
 | cost_id              | integer    | null: false                    |(配送料)
-| shipping_from_id     | integer    | null: false                    |(発送元、地域)
-| shipping_days_id     | integer    | null: false                    |(購入日)
-| prefectures_id       | integer    | null: false                    |(都道府県)
+| shipping_day_id      | integer    | null: false                    |(購入日)
+| prefecture_id        | integer    | null: false                    |(都道府県)
 | user                 | references | null: false, foreign_key: true |
 
 
 ### Association
 belongs_to :user
-belongs_to :buyer
+has_one    :buyer
 
 
 ## buyers(購入者)テーブル
@@ -78,12 +77,12 @@ belongs_to :item
 belongs_to :user
 
 
-## address(購入記録)テーブル
+## addresses(購入記録)テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | post_cord          | string     | null: false,                   |(郵便番号)
-| prefectures_id     | integer    | null: false                    |(都道府県)
+| prefecture_id      | integer    | null: false                    |(都道府県)
 | city               | string     | null: false                    |(市)
 | address            | string     | null: false                    |(住所)
 | building_name      | string     |                                |(ビル名)
