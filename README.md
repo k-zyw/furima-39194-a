@@ -40,8 +40,8 @@ Things you may want to cover:
 
 
 ### Association
-has_many :items
-has_one  :buyer
+has_many    :items
+has_one     :address
 
 
 ## items(商品出品)テーブル
@@ -63,7 +63,20 @@ has_one  :buyer
 belongs_to :user
 belongs_to :buyer
 
-## buyer(出品購入)テーブル
+
+## buyer(購入者)テーブル
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| user_id            | references | null: false, foreign_key: true |
+| item_id            | references | null: false, foreign_key: true |
+
+
+### Association
+has_one :address
+belongs_item
+
+
+## address(購入記録)テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
@@ -73,10 +86,10 @@ belongs_to :buyer
 | address            | text       | null: false                    |(住所)
 | building_name      | string     |                                |(ビル名)
 | phone_number       | string     | null: false,                   |(電話番号)
-| items              | references | null: false, foreign_key: true |
-| user               | references | null: false, foreign_key: true |
+| user_id            | references | null: false, foreign_key: true |
+| item_id            | references | null: false, foreign_key: true |
 
 
 ### Association
-has_one  :user
-has_many :items
+belongs_to  :user
+belongs_to  :buyer
