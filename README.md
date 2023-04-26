@@ -50,7 +50,7 @@ has_many     :buyers
 |--------------------  |----------- |--------------------------------|
 | product_name         | string     | null: false                    |(商品名)
 | price                | integer    | null: false                    |(価格)
-| description          | string     | null: false                    |(説明)
+| description          | text       | null: false                    |(説明)
 | category_id          | integer    | null: false                    |(商品詳細)
 | product_condition_id | integer    | null: false                    |(商品状態)
 | cost_id              | integer    | null: false                    |(配送料)
