@@ -7,4 +7,13 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
+
+  def create
+    Item.create(item_params)
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:image, :product_name, :price,:description,:category_id,:product_condition_id,:cost_id,:shipping_day_id,:prefecture_id).merge(user_id: current_user.id)
+  end
 end
