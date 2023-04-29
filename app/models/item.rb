@@ -10,4 +10,12 @@ class Item < ApplicationRecord
 
   belongs_to       :user
   has_one_attached :image
+
+  extend ActiveHash::Associations::ActiveRecordExtensions #←アクティブハッシュ継承(アソシエーションを組む)
+  belongs_to :category
+  belongs_to :product_condition
+  belongs_to :cost
+  belongs_to :shipping_day
+  belongs_to :prefecture
+   
 end
