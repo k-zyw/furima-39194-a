@@ -122,6 +122,7 @@
 
   <%# 商品一覧 %>
   <div class='item-contents'>
+   <% @items.each do |item| %>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle" >
       新規投稿商品
@@ -146,7 +147,7 @@
             <%= "商品名" %>
           </h3>
           <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+            <span><%= @items.price %>円<br><%= @items.cost_id.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -179,6 +180,7 @@
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
+  <% end %>
   </div>
   <%# /商品一覧 %>
 </div>
