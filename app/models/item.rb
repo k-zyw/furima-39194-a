@@ -26,10 +26,11 @@ class Item < ApplicationRecord
   validates :shipping_day_id,       numericality:{ other_than: 1 , message: "can't be blank" }
   validates :prefecture_id,         numericality:{ other_than: 1 , message: "can't be blank" }
 
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' } #←価格は半角数字のみ保存可能であること
   validates :price,
-            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
+            numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, }
             
+               
+  
   #↑numericalityで整数のみにする設定や数値の最大値、最小値を設定できる
   #only_integer: trueで整数値のみに設定
   #greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}で最小値、最大値を設定
