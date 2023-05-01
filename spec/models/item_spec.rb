@@ -29,38 +29,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'category_id(カテゴリー)が「---」なら出品できない' do
-        @item.category_id = ''
-        @item.category_id = nil
+        @item.category_id = 1        
         @item.valid?        
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'product_condition_id(商品の状態)が「---」なら出品できない' do
-        @item.product_condition_id = ''
-        @item.product_condition_id = nil
+        @item.product_condition_id = 1       
         @item.valid?        
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
       end
       it 'cost_id(配送料の負担)が「---」なら出品できない' do
-        @item.cost_id = ''
-        @item.cost_id = nil
+        @item.cost_id = 1        
         @item.valid?
         expect(@item.errors.full_messages).to include("Cost can't be blank")
       end
       it 'prefecture_id(発送元の地域)が「---」なら出品できない' do
-        @item.prefecture_id = ''
-        @item.prefecture_id = nil
+        @item.prefecture_id = 1        
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'shipping_day_id(発送までの日数)が「---」なら出品できない' do
-        @item.shipping_day_id = ''
-        @item.shipping_day_id = nil
+        @item.shipping_day_id = 1       
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
-      it 'price(価格)が「---」なら出品できない' do
-        @item.price = ''
-        @item.price = nil
+      it 'price(価格)が空なら出品できない' do
+        @item.price = ''        
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
