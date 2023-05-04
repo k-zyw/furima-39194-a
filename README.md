@@ -32,9 +32,9 @@ Things you may want to cover:
 | email               | string | null: false, unique: true |
 | encrypted_password  | string | null: false               |
 | nick_name           | string | null: false               |
-| last_name         | string | null: false               |
+| last_name           | string | null: false               |
 | first_name          | string | null: false               |
-| last_name_kana    | string | null: false               |
+| last_name_kana      | string | null: false               |
 | first_name_kana     | string | null: false               |
 | birth_day           | date   | null: false               |
 
@@ -81,15 +81,25 @@ belongs_to :user
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| post_cord          | string     | null: false,                   |(郵便番号)
+| post_cord          | string     | null: false                    |(郵便番号)
 | prefecture_id      | integer    | null: false                    |(都道府県)
 | city               | string     | null: false                    |(市)
 | address            | string     | null: false                    |(住所)
 | building_name      | string     |                                |(ビル名)
-| phone_number       | string     | null: false,                   |(電話番号)
+| phone_number       | string     | null: false                    |(電話番号)
 | buyer              | references | null: false, foreign_key: true |
 
 
 ### Association
 belongs_to  :buyer
 
+## cardsテーブル(クレジットカード)テーブル
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| number-form        | integer    | null: false,                   |(カード番号)
+| expiry-form        | integer    | null: false                    |(期限)
+| cvc-form           | integer    | null: false                    |(カード背面4桁もしくは3桁の番号)
+| address            | string     | null: false                    |(住所)
+| building_name      | string     |                                |(ビル名)
+| phone_number       | string     | null: false,                   |(電話番号)
+| buyer              | references | null: false, foreign_key: true |
