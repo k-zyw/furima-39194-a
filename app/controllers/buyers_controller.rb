@@ -4,10 +4,16 @@ class BuyersController < ApplicationController
     @buyer_address = BuyerAddress.new
   end
   
-  def create
-    @item = Item.find(params[:item_id])
+  def create        
+    @item = Item.find(params[:item_id])    
     @buyer_address = BuyerAddress.new(buyer_params)
     if @buyer_address.valid?
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp::Charge.create(
+        amount: @item.price,  # 商品の値段
+        card: buyer_params[:token],    # カードトークン
+        currency: 'jpy'                 # 通貨の種類（日本円）
+      )      
        @buyer_address.save
       redirect_to root_path
     else
@@ -17,7 +23,7 @@ class BuyersController < ApplicationController
 
   private
   def buyer_params
-    params.require(:buyer_address).permit(:post_cord, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id)
+    params.require(:buyer_address).permit(:post_cord, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end                                                                                                                                                             #↑.idで@itemのレコードを取得する。
 
 end
