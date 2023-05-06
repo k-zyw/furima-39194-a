@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates  :prefecture_id,          presence: true
   validates  :image,                  presence: true
   
-
+  has_one          :buyer
   belongs_to       :user
   has_one_attached :image
 
