@@ -1,15 +1,16 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create ]
-  before_action :prevent_url, only: [:index, :create]
+  before_action :item_find,          only: [:index, :create]
+  before_action :prevent_url,        only: [:index, :create]
 
 
   def index
-    @item = Item.find(params[:item_id])
+    #@item = Item.find(params[:item_id])
     @buyer_address = BuyerAddress.new
   end
   
   def create        
-    @item = Item.find(params[:item_id])    
+    #@item = Item.find(params[:item_id])    
     @buyer_address = BuyerAddress.new(buyer_params)
     if @buyer_address.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 自身のPAY.JPテスト秘密鍵を記述しましょう
@@ -29,6 +30,10 @@ class BuyersController < ApplicationController
   def buyer_params
     params.require(:buyer_address).permit(:post_cord, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end                                                                                                                                                             #↑.idで@itemのレコードを取得する。
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
 
   def prevent_url
     @item = Item.find(params[:item_id])

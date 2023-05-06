@@ -93,13 +93,3 @@ belongs_to :user
 ### Association
 belongs_to  :buyer
 
-## cardsテーブル(クレジットカード)テーブル
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| number-form        | integer    | null: false,                   |(カード番号)
-| expiry-form        | integer    | null: false                    |(期限)
-| cvc-form           | integer    | null: false                    |(カード背面4桁もしくは3桁の番号)
-| address            | string     | null: false                    |(住所)
-| building_name      | string     |                                |(ビル名)
-| phone_number       | string     | null: false,                   |(電話番号)
-| buyer              | references | null: false, foreign_key: true |
