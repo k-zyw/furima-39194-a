@@ -4,13 +4,11 @@ class BuyersController < ApplicationController
   before_action :prevent_url,        only: [:index, :create]
 
 
-  def index
-    #@item = Item.find(params[:item_id])
+  def index    
     @buyer_address = BuyerAddress.new
   end
   
-  def create        
-    #@item = Item.find(params[:item_id])    
+  def create               
     @buyer_address = BuyerAddress.new(buyer_params)
     if @buyer_address.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 自身のPAY.JPテスト秘密鍵を記述しましょう
@@ -35,8 +33,7 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def prevent_url
-    @item = Item.find(params[:item_id])
+  def prevent_url    
     if @item.user_id == current_user.id || @item.buyer != nil
        redirect_to root_path
     end
