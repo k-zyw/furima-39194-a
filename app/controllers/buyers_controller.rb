@@ -1,4 +1,7 @@
 class BuyersController < ApplicationController
+  #before_action :prevent_url, only: [:index, :create]
+
+
   def index
     @item = Item.find(params[:item_id])
     @buyer_address = BuyerAddress.new
@@ -25,5 +28,11 @@ class BuyersController < ApplicationController
   def buyer_params
     params.require(:buyer_address).permit(:post_cord, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end                                                                                                                                                             #↑.idで@itemのレコードを取得する。
+
+  #def prevent_url
+     #if @item.user_id == current_user.id || @item.buyer != nil
+      #redirect_to root_path
+     #end
+  #end  
 
 end

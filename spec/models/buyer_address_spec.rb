@@ -19,6 +19,11 @@ RSpec.describe BuyerAddress, type: :model do
     end
 
     context '商品購入(配送先情報)が入力できない場合' do
+      it 'token(クレジットカード情報)が空だと保存ができない' do
+        @buyer_address.token = nil
+        @buyer_address.valid?        
+        expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
+      end
       it 'userが紐付いていないと保存できない' do
         @buyer_address.user_id = nil
         @buyer_address.valid?
