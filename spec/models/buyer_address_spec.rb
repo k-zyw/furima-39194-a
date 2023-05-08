@@ -47,7 +47,7 @@ RSpec.describe BuyerAddress, type: :model do
       it 'prefecture_id(発送先の地域)が「---」なら保存できない' do
         @buyer_address.prefecture_id = 1
         @buyer_address.valid?        
-        expect(@buyer_address.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@buyer_address.errors.full_messages).to include("Prefecture を入力してください")
       end
       it 'city(市区町村)が空なら保存できない' do
         @buyer_address.city = ''

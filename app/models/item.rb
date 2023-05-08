@@ -20,11 +20,11 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   belongs_to :prefecture
 
-  validates :category_id,           numericality:{ other_than: 1 , message: "can't be blank" } #←ジャンルの選択が「---」の時は保存できないようにする
-  validates :product_condition_id,  numericality:{ other_than: 1 , message: "can't be blank" }
-  validates :cost_id,               numericality:{ other_than: 1 , message: "can't be blank" }
-  validates :shipping_day_id,       numericality:{ other_than: 1 , message: "can't be blank" }
-  validates :prefecture_id,         numericality:{ other_than: 1 , message: "can't be blank" }
+  validates :category_id,           numericality:{ other_than: 1 , message: "を入力してください" } #←ジャンルの選択が「---」の時は保存できないようにする
+  validates :product_condition_id,  numericality:{ other_than: 1 , message: "を入力してください" }
+  validates :cost_id,               numericality:{ other_than: 1 , message: "を入力してください" }
+  validates :shipping_day_id,       numericality:{ other_than: 1 , message: "を入力してください" }
+  validates :prefecture_id,         numericality:{ other_than: 1 , message: "を入力してください" }
 
   validates :price,
             numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, }

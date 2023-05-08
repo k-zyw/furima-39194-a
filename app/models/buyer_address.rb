@@ -3,7 +3,7 @@ class BuyerAddress
   attr_accessor :post_cord, :prefecture_id, :city, :address, :building_name, :phone_number, :item_id, :user_id, :token
 
     
-    validates :prefecture_id, numericality: {other_than: 1}
+    validates :prefecture_id, numericality: {other_than: 1, message: "を入力してください"}
 
     with_options presence: true do
     validates :token
