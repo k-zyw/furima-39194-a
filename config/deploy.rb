@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.17.2"
+lock " 3.17.2"
 
-set :application, "furima_39194_a"
+set :application, "furima-39194-a"
 # どのリポジトリからアプリをpullするかを指定する
 set :repo_url, "git@github.com:k-zyw/furima-39194-a.git"
 
